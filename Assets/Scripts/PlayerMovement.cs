@@ -43,6 +43,7 @@ public class PlayerMovement : MonoBehaviour
 {
     public Transform playerView;     // Camera
     public float playerViewYOffset = 0.6f; // The height at which the camera is bound to
+    //public float playerViewZOffset = 0.6f; // The distance from head which the camera is bound to
     public float xMouseSensitivity = 30.0f;
     public float yMouseSensitivity = 30.0f;
 
@@ -388,9 +389,19 @@ public class PlayerMovement : MonoBehaviour
         moveDirectionNorm = wishdir;
 
         var wishspeed = wishdir.magnitude;
-        wishspeed *= moveSpeed;
+        bool isSprinting = Input.GetKey(KeyCode.LeftShift);
 
-        Accelerate(wishdir, wishspeed, runAcceleration);
+        if (isSprinting)
+        {
+            wishspeed *= runAcceleration;
+            Accelerate(wishdir, wishspeed, runAcceleration);
+        }
+        else
+        {
+            wishspeed *= moveSpeed;
+            Accelerate(wishdir, wishspeed, runAcceleration);
+        }
+
 
         // Reset the gravity velocity
         playerVelocity.y = -gravity * Time.deltaTime;
