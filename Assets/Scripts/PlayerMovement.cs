@@ -28,6 +28,7 @@
 
 using System.Collections;
 using System.Collections.Generic;
+using System.Data;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -42,6 +43,7 @@ struct Cmd
 public class PlayerMovement : MonoBehaviour
 {
     public Transform playerView;     // Camera
+    
     public float playerViewYOffset = 0.6f; // The height at which the camera is bound to
     //public float playerViewZOffset = 0.6f; // The distance from head which the camera is bound to
     public float xMouseSensitivity = 30.0f;
@@ -53,6 +55,7 @@ public class PlayerMovement : MonoBehaviour
     public float friction = 6; //Ground friction
 
     /* Movement stuff */
+
     public float moveSpeed = 7.0f;                // Ground move speed
     public float runAcceleration = 14.0f;         // Ground accel
     public float runDeacceleration = 10.0f;       // Deacceleration that occurs when running on the ground
@@ -78,6 +81,7 @@ public class PlayerMovement : MonoBehaviour
     private float fps = 0.0f;
 
     private CharacterController _controller;
+    private Animator _animator;
 
     // Camera rotations
     private float rotX = 0.0f;
@@ -125,6 +129,7 @@ public class PlayerMovement : MonoBehaviour
             transform.position.z);
 
         _controller = GetComponent<CharacterController>();
+        _animator = GetComponent<Animator>();
     }
 
     private void Update()
@@ -179,6 +184,15 @@ public class PlayerMovement : MonoBehaviour
         }
 
         // Move the controller
+        bool isMoving = _controller.velocity.magnitude > 0.1f;
+        bool isRunning = isMoving && Input.GetKey(KeyCode.LeftShift);
+
+        _animator.SetBool("isIdle", !isMoving);
+        _animator.SetBool("isWalking", isMoving && !isRunning);
+        _animator.SetBool("isRunning", isRunning);
+
+        
+
         _controller.Move(playerVelocity * Time.deltaTime);
 
         /* Calculate top velocity */
