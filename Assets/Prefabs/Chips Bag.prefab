@@ -10,27 +10,27 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: 532cb6edc5ddc9449a5f3ee7f80df1bc, type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.10000004
+      value: 0.2
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 532cb6edc5ddc9449a5f3ee7f80df1bc, type: 3}
       propertyPath: m_LocalScale.y
-      value: 0.10000001
+      value: 0.2
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 532cb6edc5ddc9449a5f3ee7f80df1bc, type: 3}
       propertyPath: m_LocalScale.z
-      value: 0.10000004
+      value: 0.2
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 532cb6edc5ddc9449a5f3ee7f80df1bc, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 11.0715275
+      value: 13.612305
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 532cb6edc5ddc9449a5f3ee7f80df1bc, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.9377
+      value: 0.656
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 532cb6edc5ddc9449a5f3ee7f80df1bc, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 6.4926558
+      value: 6.203327
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 532cb6edc5ddc9449a5f3ee7f80df1bc, type: 3}
       propertyPath: m_LocalRotation.w
@@ -81,6 +81,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 532cb6edc5ddc9449a5f3ee7f80df1bc, type: 3}
       insertIndex: -1
       addedObject: {fileID: -3503383264509804046}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 532cb6edc5ddc9449a5f3ee7f80df1bc, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 7790318814564180231}
   m_SourcePrefab: {fileID: 100100000, guid: 532cb6edc5ddc9449a5f3ee7f80df1bc, type: 3}
 --- !u!1 &3778281935480023963 stripped
 GameObject:
@@ -101,6 +104,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: 0
   value: 20
+  itemName: Chips
 --- !u!54 &61191095864933990
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -148,4 +152,25 @@ BoxCollider:
   m_Enabled: 1
   serializedVersion: 3
   m_Size: {x: 0.6277203, y: 1.9943064, z: 1.4976375}
+  m_Center: {x: 0.00635563, y: 0.000028908253, z: 0.00006538631}
+--- !u!135 &7790318814564180231
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3778281935480023963}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Radius: 1.5
   m_Center: {x: 0.00635563, y: 0.000028908253, z: 0.00006538631}
