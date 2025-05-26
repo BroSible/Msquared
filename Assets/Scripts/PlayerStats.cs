@@ -13,7 +13,7 @@ public class PlayerStats : MonoBehaviour
     public float money = 50f;
 
     [Header("Var")]
-    public float hungerDecayRate = 1f; // Еда убывает со временем
+    public float hungerDecayRate = 1f;
     public float thirstDecayRate = 1.5f;
     
     void Awake()
@@ -46,7 +46,6 @@ public class PlayerStats : MonoBehaviour
         if (health <= 0)
         {
             Debug.Log("Игрок умер");
-            // Здесь можно вызвать GameOver или другую логику
         }
     }
 

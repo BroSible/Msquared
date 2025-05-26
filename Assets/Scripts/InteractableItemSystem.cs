@@ -4,17 +4,24 @@ using UnityEngine;
 
 public class InteractableItemSystem : MonoBehaviour, IInteractable
 {
+    public static InteractableItemSystem Instance;
     public enum Types
     {
         food,
         drink,
         treatment,
+        cash,
     }
 
     [Header("Item type")]
     public Types type;
     public float value;
     public string itemName;
+
+    void Start()
+    {
+        Instance = this;
+    }
 
 
     public void Interact()
@@ -37,6 +44,11 @@ public class InteractableItemSystem : MonoBehaviour, IInteractable
                 player.health = Mathf.Clamp(player.health, 0, 100);
                 Destroy(gameObject);
                 break;
+
+            case Types.cash:
+                player.AddMoney(value);
+                Destroy(gameObject);
+                break;
         }
         InteractionUI.Instance.HideHint();
     }
@@ -48,6 +60,7 @@ public class InteractableItemSystem : MonoBehaviour, IInteractable
             Types.food => "eat",
             Types.drink => "drink",
             Types.treatment => "use",
+            Types.cash => "take",
             _ => "interact"
         };
 

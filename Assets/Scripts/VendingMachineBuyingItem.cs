@@ -6,17 +6,18 @@ public class VendingMachineBuyingItem : MonoBehaviour, IInteractable
     public GameObject _item;
     public Transform _spawnItemPoint;
     private PlayerStats _player;
-
     private bool isHintShown = false;
+    private VendingMachineRobbery _vendingMachineRobbery;
 
     private void Start()
     {
         _player = PlayerStats.Instance;
+        _vendingMachineRobbery = GetComponent<VendingMachineRobbery>();
     }
 
     public void ShowHint()
     {
-        if (!isHintShown)
+        if (!isHintShown && !_vendingMachineRobbery.IsBroken)
         {
             string message = $"Купить предмет за <color={(_player.money > price ? "green" : "red")}>{price}</color> (E)";
             InteractionUI.Instance.ShowHint(message);
@@ -35,7 +36,7 @@ public class VendingMachineBuyingItem : MonoBehaviour, IInteractable
 
     public void Interact()
     {
-        if (_player.SpendMoney(price))
+        if (_player.SpendMoney(price) && !_vendingMachineRobbery.IsBroken)
         {
             Instantiate(_item, _spawnItemPoint.position, _spawnItemPoint.rotation);
             InteractionUI.Instance.ShowHint("<color=green>Покупка успешна!</color>");

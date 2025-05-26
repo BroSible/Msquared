@@ -2,12 +2,19 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
+public interface IDamageable
+{
+    void TakeDamage(float damage);
+}
+
+
 public class PlayerAttack : MonoBehaviour
 {
     [Header("Animator")]
     private Animator _animator;
     public Animator _handAnimator; // get value from hands animator
-    
+
     [Header("Attacking")]
     public float attackDistance = 3f;
     public float attackDelay;
@@ -22,8 +29,8 @@ public class PlayerAttack : MonoBehaviour
     bool attacking = false;
     bool readyToAttack = true;
     int attackCount;
-    
-    
+
+
     [Header("Camera")]
     public Camera cam;
 
@@ -76,16 +83,17 @@ public class PlayerAttack : MonoBehaviour
 
     void AttackRaycast()
     {
-        if(Physics.Raycast(cam.transform.position, cam.transform.forward, out RaycastHit hit, attackDistance, attackLayer))
-        { 
+        if (Physics.Raycast(cam.transform.position, cam.transform.forward, out RaycastHit hit, attackDistance, attackLayer))
+        {
             HitTarget(hit.point);
 
-            if (hit.transform.TryGetComponent<TestNPC>(out TestNPC T))
+            if (hit.transform.TryGetComponent<IDamageable>(out IDamageable target))
             {
-                T.TakeDamage(attackDamage);
+                target.TakeDamage(attackDamage);
             }
-        } 
+        }
     }
+
 
     void HitTarget(Vector3 pos)
     {
